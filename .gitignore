@@ -9,4 +9,5 @@ pkg
 tmtags
 *.swp
 *.swo
+*.log
 Gemfile.lock

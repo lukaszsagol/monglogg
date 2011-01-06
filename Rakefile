@@ -1,3 +1,4 @@
+# encoding: utf-8
 require 'rubygems'
 require 'bundler'
 begin
@@ -15,14 +16,11 @@ Jeweler::Tasks.new do |gem|
   gem.name = "monggler"
   gem.homepage = "http://github.com/zgryw/monggler"
   gem.license = "MIT"
-  gem.summary = %Q{TODO: one-line summary of your gem}
+  gem.summary = %Q{Monggler allows Rails to log straight into MongoDB}
   gem.description = %Q{TODO: longer description of your gem}
   gem.email = "lukasz@sagol.pl"
   gem.authors = ["Łukasz Sągol"]
-  # Include your dependencies below. Runtime dependencies are required when using your gem,
-  # and development dependencies are only needed for development (ie running rake tasks, tests, etc)
-  #  gem.add_runtime_dependency 'jabber4r', '> 0.1'
-  #  gem.add_development_dependency 'rspec', '> 1.2.3'
+  # dependencies stored inside Gemfile
 end
 Jeweler::RubygemsDotOrgTasks.new
 
