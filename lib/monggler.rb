@@ -1,4 +1,5 @@
 require 'rails'
+require 'mongo'
 
 require 'monggler/logger.rb'
 require 'monggler/mongo_driver.rb'
