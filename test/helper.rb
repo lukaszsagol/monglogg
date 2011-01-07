@@ -18,4 +18,7 @@ class Test::Unit::TestCase
     yield
     FileUtils.mv filename+'.tmp', filename if File.exists? filename+'.tmp'
   end
+
+  Monggler.logger.mongo.connection.drop_collection(Monggler.logger.mongo.send(:config)[:collection])
 end
+
