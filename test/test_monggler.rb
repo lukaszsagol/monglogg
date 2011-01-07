@@ -1,7 +1,13 @@
 require 'helper'
 
 class TestMonggler < Test::Unit::TestCase
-  should "probably rename this file and start testing for real" do
-    flunk "hey buddy, you should probably rename this file and start testing for real"
+  context "Monggler" do
+    setup do
+      @logger = Monggler.logger
+    end
+
+    should "always return the same logger instance" do
+      assert_equal @logger, Monggler.logger
+    end
   end
 end
