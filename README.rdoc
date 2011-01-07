@@ -1,16 +1,19 @@
-= monggler
+= monggler - Rails logging with Mongo flavor
 
-Description goes here.
+Monggler is a simple Rails logging gem, especially useful when you host your application on more than one server.
+It allows you to connect all hosts to single MongoDB instance, to store there all application logs.
 
-== Contributing to monggler
- 
-* Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet
-* Check out the issue tracker to make sure someone already hasn't requested it and/or contributed it
-* Fork the project
-* Start a feature/bugfix branch
-* Commit and push until you are happy with your contribution
-* Make sure to add tests for it. This is important so I don't break it in a future version unintentionally.
-* Please try not to mess with the Rakefile, version, or history. If you want to have your own version, or is otherwise necessary, that is fine, but please isolate to its own commit so I can cherry-pick around it.
+== Usage
+
+Monggler::Logger is 100% compatibile with standard Rails logger, so you can add it as default Rails logger with one line
+in application.rb, however it's not the best idea. Why? Because Rails log all the info as plain strings, which would be
+stored in Mongo as seperate records.
+
+Because of that Monggler will soon come with LogSubscribers, which will take care of logging all the request specific
+information in format that can be easily searched through.
+
+If you decide not to override default Rails logger you can still put some debug information to Monggler on you own.
+Just use Monggler.logger method, which will return logger sending messages to Mongo as well as standard Rails log file.
 
 == Copyright
 
