@@ -24,8 +24,13 @@ class TestMongoDriver < Test::Unit::TestCase
     end
 
     context "connection" do
-      should "be established" do
+      should "be automatically established" do
         assert @mongo.connected?, "Not connected to MongoDB"
+      end
+
+      should "properly disconnect" do
+        @mongo.disconnect!
+        assert !@mongo.connected?, "Still connected to MongoDB"
       end
     end
   end

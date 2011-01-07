@@ -24,8 +24,46 @@ Gem::Specification.new do |s|
     "Rakefile",
     "VERSION",
     "lib/monggler.rb",
+    "lib/monggler/helper.rb",
+    "lib/monggler/logger.rb",
+    "lib/monggler/mongo_driver.rb",
+    "monggler.gemspec",
+    "test/dummy/Rakefile",
+    "test/dummy/app/controllers/application_controller.rb",
+    "test/dummy/app/helpers/application_helper.rb",
+    "test/dummy/app/views/layouts/application.html.erb",
+    "test/dummy/config.ru",
+    "test/dummy/config/application.rb",
+    "test/dummy/config/boot.rb",
+    "test/dummy/config/database.yml",
+    "test/dummy/config/environment.rb",
+    "test/dummy/config/environments/development.rb",
+    "test/dummy/config/environments/production.rb",
+    "test/dummy/config/environments/test.rb",
+    "test/dummy/config/initializers/backtrace_silencers.rb",
+    "test/dummy/config/initializers/inflections.rb",
+    "test/dummy/config/initializers/mime_types.rb",
+    "test/dummy/config/initializers/secret_token.rb",
+    "test/dummy/config/initializers/session_store.rb",
+    "test/dummy/config/locales/en.yml",
+    "test/dummy/config/routes.rb",
+    "test/dummy/db/test.sqlite3",
+    "test/dummy/public/404.html",
+    "test/dummy/public/422.html",
+    "test/dummy/public/500.html",
+    "test/dummy/public/favicon.ico",
+    "test/dummy/public/javascripts/application.js",
+    "test/dummy/public/javascripts/controls.js",
+    "test/dummy/public/javascripts/dragdrop.js",
+    "test/dummy/public/javascripts/effects.js",
+    "test/dummy/public/javascripts/prototype.js",
+    "test/dummy/public/javascripts/rails.js",
+    "test/dummy/public/stylesheets/.gitkeep",
+    "test/dummy/script/rails",
     "test/helper.rb",
-    "test/test_monggler.rb"
+    "test/test_logger.rb",
+    "test/test_monggler.rb",
+    "test/test_mongo_driver.rb"
   ]
   s.homepage = %q{http://github.com/zgryw/monggler}
   s.licenses = ["MIT"]
@@ -48,8 +86,9 @@ Gem::Specification.new do |s|
     "test/dummy/config/initializers/session_store.rb",
     "test/dummy/config/routes.rb",
     "test/helper.rb",
+    "test/test_logger.rb",
     "test/test_monggler.rb",
-    "test/test_mongo_logger.rb"
+    "test/test_mongo_driver.rb"
   ]
 
   if s.respond_to? :specification_version then
@@ -59,6 +98,8 @@ Gem::Specification.new do |s|
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
       s.add_runtime_dependency(%q<rails>, [">= 3.0.0"])
       s.add_runtime_dependency(%q<sqlite3-ruby>, [">= 0"])
+      s.add_runtime_dependency(%q<mongo>, [">= 0"])
+      s.add_runtime_dependency(%q<bson_ext>, [">= 0"])
       s.add_development_dependency(%q<shoulda>, [">= 0"])
       s.add_development_dependency(%q<bundler>, ["~> 1.0.0"])
       s.add_development_dependency(%q<jeweler>, ["~> 1.5.2"])
@@ -66,6 +107,8 @@ Gem::Specification.new do |s|
     else
       s.add_dependency(%q<rails>, [">= 3.0.0"])
       s.add_dependency(%q<sqlite3-ruby>, [">= 0"])
+      s.add_dependency(%q<mongo>, [">= 0"])
+      s.add_dependency(%q<bson_ext>, [">= 0"])
       s.add_dependency(%q<shoulda>, [">= 0"])
       s.add_dependency(%q<bundler>, ["~> 1.0.0"])
       s.add_dependency(%q<jeweler>, ["~> 1.5.2"])
@@ -74,6 +117,8 @@ Gem::Specification.new do |s|
   else
     s.add_dependency(%q<rails>, [">= 3.0.0"])
     s.add_dependency(%q<sqlite3-ruby>, [">= 0"])
+    s.add_dependency(%q<mongo>, [">= 0"])
+    s.add_dependency(%q<bson_ext>, [">= 0"])
     s.add_dependency(%q<shoulda>, [">= 0"])
     s.add_dependency(%q<bundler>, ["~> 1.0.0"])
     s.add_dependency(%q<jeweler>, ["~> 1.5.2"])
