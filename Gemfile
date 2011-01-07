@@ -9,6 +9,7 @@ source "http://rubygems.org"
 gem "rails", ">= 3.0.0"
 gem "sqlite3-ruby", :require => "sqlite3"
 gem "mongo"
+gem "bson_ext"
 
 group :development do
   gem "shoulda", ">= 0"
