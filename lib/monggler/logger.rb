@@ -10,11 +10,11 @@ module Monggler
 
     def add(severity, message = nil, progname = nil, &block)
       msg = super
-      # TODO: send message to mongo
+      mongo.add_message(severity, msg)
     end
 
     def add_hash(hash)
-      # TODO: send hash to mongo
+      mongo.add_hash(hash)
     end
   end
 end
