@@ -26,7 +26,7 @@ module Monggler
           :duration =>          event.duration, 
           :view =>              from_rails_root(event.payload[:identifier]),
           :count =>             event.payload[:count],
-          :type =>              :render_partial
+          :type =>              :render_collection
         })
       end
 
