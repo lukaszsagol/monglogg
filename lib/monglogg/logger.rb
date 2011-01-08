@@ -1,4 +1,4 @@
-module Monggler
+module Monglogg
   class Logger < ActiveSupport::BufferedLogger
     def initialize(log, level = DEBUG)
       super

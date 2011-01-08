@@ -1,8 +1,8 @@
-module Monggler
+module Monglogg
   module LogSubscribers
     class ActionViewSubscriber < ActiveSupport::LogSubscriber
       def render_template(event)
-        Monggler.logger.add_hash({
+        Monglogg.logger.add_hash({
           :transaction_id =>    event.transaction_id, 
           :duration =>          event.duration, 
           :view =>              from_rails_root(event.payload[:identifier]),
@@ -12,7 +12,7 @@ module Monggler
       end
 
       def render_partial(event)
-        Monggler.logger.add_hash({
+        Monglogg.logger.add_hash({
           :transaction_id =>    event.transaction_id, 
           :duration =>          event.duration, 
           :view =>              from_rails_root(event.payload[:identifier]),
@@ -21,7 +21,7 @@ module Monggler
       end
 
       def render_collection(event)
-        Monggler.logger.add_hash({
+        Monglogg.logger.add_hash({
           :transaction_id =>    event.transaction_id, 
           :duration =>          event.duration, 
           :view =>              from_rails_root(event.payload[:identifier]),

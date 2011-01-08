@@ -1,6 +1,6 @@
-module Monggler
+module Monglogg
   class MongoDriver
-    CONFIG_FILE = File.join('config', 'monggler.yml')
+    CONFIG_FILE = File.join('config', 'monglogg.yml')
     SEVERITY_TO_SYMBOL = [:debug, :info, :warn, :error, :fatal, :unknown]
 
     attr_reader :request, :previous_request
@@ -63,8 +63,8 @@ module Monggler
         @config = {
           :host => 'localhost',
           :port => 27017,
-          :collection => "#{Monggler::Helper.current_app_name}_#{Rails.env}_log",
-          :db => 'monggler'
+          :collection => "#{Monglogg::Helper.current_app_name}_#{Rails.env}_log",
+          :db => 'monglogg'
         }
         if File.exists? Rails.root.join(CONFIG_FILE)
           config_file = YAML.load(File.read(Rails.root.join(CONFIG_FILE)))
@@ -84,7 +84,7 @@ module Monggler
           :messages => Hash.new {|h,k| h[k] = Array.new },
           :sql => [],
           :views => [],
-          :ip => Monggler::Helper.current_ip,
+          :ip => Monglogg::Helper.current_ip,
           :custom => []
         }
       end

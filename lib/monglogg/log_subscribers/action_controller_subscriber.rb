@@ -1,8 +1,8 @@
-module Monggler
+module Monglogg
   module LogSubscribers
     class ActionControllerSubscriber < ActiveSupport::LogSubscriber
       def start_processing(event)
-        Monggler.logger.add_hash({
+        Monglogg.logger.add_hash({
           :transaction_id =>  event.transaction_id,
           :controller =>      event.payload[:controller],
           :action =>          event.payload[:action],
@@ -16,7 +16,7 @@ module Monggler
       end
 
       def process_action(event)
-        Monggler.logger.add_hash({
+        Monglogg.logger.add_hash({
           :transaction_id =>  event.transaction_id,
           :status =>          event.payload[:status],
           :view_runtime =>    event.payload[:view_runtime],
@@ -30,7 +30,7 @@ module Monggler
       end
 
       def redirect_to(event)
-        Monggler.logger.add_hash({
+        Monglogg.logger.add_hash({
           :transaction_id =>  event.transaction_id,
           :redirect =>        event.payload[:location],
           :type =>            :redirect

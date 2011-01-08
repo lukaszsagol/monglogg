@@ -1,8 +1,8 @@
-module Monggler
+module Monglogg
   module LogSubscribers
     class ActiveRecordSubscriber < ActiveSupport::LogSubscriber
       def sql(event)
-        Monggler.logger.add_hash({
+        Monglogg.logger.add_hash({
           :transaction_id =>  event.transaction_id,
           :duration =>        event.duration,
           :sql =>             event.payload[:sql],

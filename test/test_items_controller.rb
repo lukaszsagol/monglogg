@@ -8,7 +8,7 @@ class TestItemsController < ActionController::TestCase
   context "Action View Subscriber" do
     setup do
       get :index
-      @request = Monggler.logger.mongo.previous_request
+      @request = Monglogg.logger.mongo.previous_request
     end
     
     should "properly log rendering template" do
@@ -32,7 +32,7 @@ class TestItemsController < ActionController::TestCase
     context "after normal request" do
       setup do 
         get :index
-        @request = Monggler.logger.mongo.previous_request
+        @request = Monglogg.logger.mongo.previous_request
       end
 
       should "properly log start of processing requests" do
@@ -56,7 +56,7 @@ class TestItemsController < ActionController::TestCase
     context "redirect request" do
       setup do
         get :redirect
-        @request = Monggler.logger.mongo.previous_request
+        @request = Monglogg.logger.mongo.previous_request
       end
 
       should "properly log redirect" do
@@ -72,8 +72,8 @@ class TestItemsController < ActionController::TestCase
     end
 
     should "save old, and prepare new request hash after request" do
-      assert_nil Monggler.logger.mongo.request[:action] 
-      assert Monggler.logger.mongo.previous_request[:action] 
+      assert_nil Monglogg.logger.mongo.request[:action] 
+      assert Monglogg.logger.mongo.previous_request[:action] 
     end
   end
 end

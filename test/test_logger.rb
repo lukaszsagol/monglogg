@@ -1,13 +1,13 @@
 require 'helper'
 
 class TestLogger < Test::Unit::TestCase
-  context "Monggler Logger" do
+  context "Monglogg Logger" do
     context "messages" do
       setup do
         @io = StringIO.new
-        @logger = Monggler.logger(@io)
+        @logger = Monglogg.logger(@io)
         @message = "This is test message"
-        @level = Monggler::Logger::DEBUG
+        @level = Monglogg::Logger::DEBUG
         @logger.add @level, @message
       end
 

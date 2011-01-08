@@ -3,13 +3,13 @@ require 'helper'
 class TestMongoDriver < Test::Unit::TestCase
   context "Mongo Driver" do
     setup do
-      @logger = Monggler.logger
+      @logger = Monglogg.logger
       @mongo = @logger.mongo
     end
 
     context "configuration" do
       should "use default values, if config file not provided" do
-        without_file(Monggler::MongoDriver::CONFIG_FILE) do
+        without_file(Monglogg::MongoDriver::CONFIG_FILE) do
           @mongo.reload_config!
           config = @mongo.send(:config)
 
@@ -19,7 +19,7 @@ class TestMongoDriver < Test::Unit::TestCase
       end
 
       should "use correct collection name" do
-        assert_equal "#{Monggler::Helper.current_app_name}_#{Rails.env}_log", @mongo.send(:config)[:collection]
+        assert_equal "#{Monglogg::Helper.current_app_name}_#{Rails.env}_log", @mongo.send(:config)[:collection]
       end
 
       should "create collection if needed" do

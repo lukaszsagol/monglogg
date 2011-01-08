@@ -1,4 +1,4 @@
-module Monggler
+module Monglogg
   class Helper
     class << self
       def current_app_name

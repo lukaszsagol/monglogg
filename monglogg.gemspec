@@ -4,7 +4,7 @@
 # -*- encoding: utf-8 -*-
 
 Gem::Specification.new do |s|
-  s.name = %q{monggler}
+  s.name = %q{monglogg}
   s.version = "0.0.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
@@ -14,7 +14,8 @@ Gem::Specification.new do |s|
   s.email = %q{lukasz@sagol.pl}
   s.extra_rdoc_files = [
     "LICENSE.txt",
-    "README.rdoc"
+    "README.rdoc",
+    "TODO"
   ]
   s.files = [
     ".document",
@@ -22,15 +23,28 @@ Gem::Specification.new do |s|
     "LICENSE.txt",
     "README.rdoc",
     "Rakefile",
+    "TODO",
     "VERSION",
     "lib/monggler.rb",
     "lib/monggler/helper.rb",
+    "lib/monggler/log_subscribers/action_controller_subscriber.rb",
+    "lib/monggler/log_subscribers/action_view_subscriber.rb",
+    "lib/monggler/log_subscribers/active_record_subscriber.rb",
     "lib/monggler/logger.rb",
     "lib/monggler/mongo_driver.rb",
-    "monggler.gemspec",
     "test/dummy/Rakefile",
     "test/dummy/app/controllers/application_controller.rb",
+    "test/dummy/app/controllers/items_controller.rb",
     "test/dummy/app/helpers/application_helper.rb",
+    "test/dummy/app/helpers/items_helper.rb",
+    "test/dummy/app/models/item.rb",
+    "test/dummy/app/views/items/_form.html.erb",
+    "test/dummy/app/views/items/_item.html.erb",
+    "test/dummy/app/views/items/_new_item.html.erb",
+    "test/dummy/app/views/items/edit.html.erb",
+    "test/dummy/app/views/items/index.html.erb",
+    "test/dummy/app/views/items/new.html.erb",
+    "test/dummy/app/views/items/show.html.erb",
     "test/dummy/app/views/layouts/application.html.erb",
     "test/dummy/config.ru",
     "test/dummy/config/application.rb",
@@ -47,6 +61,8 @@ Gem::Specification.new do |s|
     "test/dummy/config/initializers/session_store.rb",
     "test/dummy/config/locales/en.yml",
     "test/dummy/config/routes.rb",
+    "test/dummy/db/migrate/20110108193231_create_items.rb",
+    "test/dummy/db/schema.rb",
     "test/dummy/db/test.sqlite3",
     "test/dummy/public/404.html",
     "test/dummy/public/422.html",
@@ -59,20 +75,26 @@ Gem::Specification.new do |s|
     "test/dummy/public/javascripts/prototype.js",
     "test/dummy/public/javascripts/rails.js",
     "test/dummy/public/stylesheets/.gitkeep",
+    "test/dummy/public/stylesheets/scaffold.css",
     "test/dummy/script/rails",
     "test/helper.rb",
+    "test/test_active_record_subscriber.rb",
+    "test/test_items_controller.rb",
     "test/test_logger.rb",
     "test/test_monggler.rb",
     "test/test_mongo_driver.rb"
   ]
-  s.homepage = %q{http://github.com/zgryw/monggler}
+  s.homepage = %q{http://github.com/zgryw/monglogg}
   s.licenses = ["MIT"]
   s.require_paths = ["lib"]
   s.rubygems_version = %q{1.3.7}
-  s.summary = %q{Monggler allows Rails to log straight into MongoDB}
+  s.summary = %q{Monglogg allows Rails to log straight into MongoDB}
   s.test_files = [
     "test/dummy/app/controllers/application_controller.rb",
+    "test/dummy/app/controllers/items_controller.rb",
     "test/dummy/app/helpers/application_helper.rb",
+    "test/dummy/app/helpers/items_helper.rb",
+    "test/dummy/app/models/item.rb",
     "test/dummy/config/application.rb",
     "test/dummy/config/boot.rb",
     "test/dummy/config/environment.rb",
@@ -85,7 +107,11 @@ Gem::Specification.new do |s|
     "test/dummy/config/initializers/secret_token.rb",
     "test/dummy/config/initializers/session_store.rb",
     "test/dummy/config/routes.rb",
+    "test/dummy/db/migrate/20110108193231_create_items.rb",
+    "test/dummy/db/schema.rb",
     "test/helper.rb",
+    "test/test_active_record_subscriber.rb",
+    "test/test_items_controller.rb",
     "test/test_logger.rb",
     "test/test_monggler.rb",
     "test/test_mongo_driver.rb"

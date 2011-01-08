@@ -13,10 +13,10 @@ require 'rake'
 require 'jeweler'
 Jeweler::Tasks.new do |gem|
   # gem is a Gem::Specification... see http://docs.rubygems.org/read/chapter/20 for more options
-  gem.name = "monggler"
-  gem.homepage = "http://github.com/zgryw/monggler"
+  gem.name = "monglogg"
+  gem.homepage = "http://github.com/zgryw/monglogg"
   gem.license = "MIT"
-  gem.summary = %Q{Monggler allows Rails to log straight into MongoDB}
+  gem.summary = %Q{Monglogg allows Rails to log straight into MongoDB}
   gem.description = %Q{TODO: longer description of your gem}
   gem.email = "lukasz@sagol.pl"
   gem.authors = ["Łukasz Sągol"]
@@ -38,7 +38,7 @@ Rake::RDocTask.new do |rdoc|
   version = File.exist?('VERSION') ? File.read('VERSION') : ""
 
   rdoc.rdoc_dir = 'rdoc'
-  rdoc.title = "monggler #{version}"
+  rdoc.title = "monglogg #{version}"
   rdoc.rdoc_files.include('README*')
   rdoc.rdoc_files.include('lib/*.rb')
   rdoc.rdoc_files.include('lib/**/*.rb')
