@@ -1,19 +1,54 @@
 = monglogg - Rails logging with Mongo flavor
 
+<b>!!! Monglogg is still in development, it should not be used in ANY production environment (I highly doubt it would work)!!!</b>
+
 Monglogg is a simple Rails logging gem, especially useful when you host your application on more than one server.
 It allows you to connect all hosts to single MongoDB instance, to store there all application logs.
 
+== Installing
+
+It's as simple as adding
+
+  gem 'monglogg', :git => 'git://github.com/zgryw/monglogg.git'
+
+to your Gemfile and... let the magic begin!
+
 == Usage
 
-Monglogg::Logger is 100% compatibile with standard Rails logger, so you can add it as default Rails logger with one line
-in application.rb, however it's not the best idea. Why? Because Rails log all the info as plain strings, which would be
-stored in Mongo as seperate records.
+Monglogg uses LogSubscribers, to get all of your application Events stored in a MongoDB. Typical stored request object looks like this:
 
-Because of that Monglogg will soon come with LogSubscribers, which will take care of logging all the request specific
-information in format that can be easily searched through.
+  {
+    "_id" : ObjectId("4d28d67914a32e10a4000001"),
+    "messages" : { },
+    "sql" : [
+      {
+      "duration" : 5.040002,
+      "sql" : "SELECT \"items\".* FROM \"items\" ORDER BY finished ASC",
+      "name" : "Item Load"
+      }
+    ],
+    "views" : [
+      {
+        "duration" : 86.25397699999999,
+        "view" : "items/index.html.haml",
+        "layout" : "layouts/application"
+      }
+    ],
+    "ip" : "192.168.1.2",
+    "custom" : [ ],
+    "controller" : "ItemsController",
+    "action" : "index",
+    "method" : "GET",
+    "formats" : ["html"],
+    "path" : "/",
+    "params" : { "controller" : "items", "action" : "index" },
+    "time" : ISODate("2011-01-08T21:26:51.099Z"),
+    "status" : 200,
+    "view_runtime" : 92.36598014831543,
+    "db_runtime" : 5.669828000000001
+  }
 
-If you decide not to override default Rails logger you can still put some debug information to Monglogg on you own.
-Just use Monglogg.logger method, which will return logger sending messages to Mongo as well as standard Rails log file.
+I think it's pretty self-explanatory.
 
 == Copyright
 
