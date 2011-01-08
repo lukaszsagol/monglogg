@@ -3,8 +3,6 @@ module Monggler
     CONFIG_FILE = File.join('config', 'monggler.yml')
     SEVERITY_TO_SYMBOL = [:debug, :info, :warn, :error, :fatal, :unknown]
 
-    attr_reader :connection, :collection
-
     def initialize
       reload_config!
     end
@@ -27,13 +25,25 @@ module Monggler
       config
       establish_connection
     end
-
+    
     def disconnect!
       @connection.connection.close
     end
 
     def connected?
       @connection.connection.connected?
+    end
+
+    def connection
+      return @connection if connected?
+      establish_connection
+      @connection
+    end
+
+    def collection
+      return @collection if connected?
+      establish_connection
+      @collection
     end
 
     private
@@ -53,7 +63,8 @@ module Monggler
       end
 
       def establish_connection
-        @connection ||= Mongo::Connection.new(config[:host], config[:port], :auto_reconnect => true).db(config[:db])
+        return @connection if @connection and connected?
+        @connection = Mongo::Connection.new(config[:host], config[:port], :auto_reconnect => true).db(config[:db])
         @auth = @connection.authenticate(config[:username], config[:password]) if config[:auth]
 
         unless @connection.collection_names.include? config[:collection]
