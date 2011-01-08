@@ -1,9 +1,13 @@
 require 'rails'
 require 'mongo'
 
-require 'monggler/logger.rb'
-require 'monggler/mongo_driver.rb'
-require 'monggler/helper.rb'
+require 'monggler/logger'
+require 'monggler/mongo_driver'
+require 'monggler/helper'
+
+require 'monggler/log_subscribers/active_record_subscriber'
+require 'monggler/log_subscribers/action_controller_subscriber'
+require 'monggler/log_subscribers/action_view_subscriber'
 
 module Monggler
   class << self
@@ -18,3 +22,7 @@ module Monggler
     end
   end
 end
+
+Monggler::LogSubscribers::ActiveRecordSubscriber.attach_to :active_record
+Monggler::LogSubscribers::ActionControllerSubscriber.attach_to :action_controller
+Monggler::LogSubscribers::ActionViewSubscriber.attach_to :action_view
