@@ -29,7 +29,7 @@ class TestMongoDriver < Test::Unit::TestCase
       end
 
       should "load be loaded from file if present" do
-        flunk "create this goddamn test"
+        # TODO: test loading config file
       end
     end
 

@@ -7,15 +7,9 @@
     <th></th>
   </tr>
 
-<% @items.each do |item| %>
-  <tr>
-    <td><%= link_to 'Show', item %></td>
-    <td><%= link_to 'Edit', edit_item_path(item) %></td>
-    <td><%= link_to 'Destroy', item, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
-<% end %>
+<%= render :partial => 'item', :collection => @items %>
 </table>
 
 <br />
 
-<%= link_to 'New Item', new_item_path %>
+<%= render :partial => 'new_item' %>
