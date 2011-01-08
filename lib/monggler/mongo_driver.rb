@@ -8,22 +8,30 @@ module Monggler
     end
 
     def add_message(severity, message)
-      msg = { 
-        :severity => SEVERITY_TO_SYMBOL[severity],
-        :message => message,
-        :date => Time.now  
-      }
-      @collection.insert(msg)
+      @request[:messages][SEVERITY_TO_SYMBOL[severity]] << message
     end
 
     def add_hash(hash)
-      # TODO: NYI
+      transaction_id = hash.delete(:transaction_id)
+      type = hash.delete(:type)
+      case type
+        when :active_record then      @request[:sql] << hash
+        when :render_partial then     @request[:views] << hash
+        when :render_collection then  @request[:views] << hash
+        when :render_template then    @request[:views] << hash
+        when :start_processing then   @request.merge!(hash)
+        when :redirect_to then        @request.merge!(hash)
+        when :process_action then     @request.merge!(hash)
+        when :custom then             @request[:custom] << hash[:custom]
+      end
+      finalize_request if type == :process_action
     end
 
     def reload_config!
       @config = nil
       config
       establish_connection
+      prepare_request
     end
     
     def disconnect!
@@ -60,6 +68,21 @@ module Monggler
           @config.merge! config_file[Rails.env] if config_file[Rails.env]
           @config[:auth] = true if @config[:username] && @config[:password]
         end
+      end
+
+      def finalize_request
+        @collection << @request
+        prepare_request
+      end
+
+      def prepare_request
+        @request = {
+          :messages => Hash.new {|h,k| h[k] = Array.new },
+          :sql => [],
+          :views => [],
+          :ip => Monggler::Helper.current_ip,
+          :custom => []
+        }
       end
 
       def establish_connection

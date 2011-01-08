@@ -1,4 +1,5 @@
 require 'rails'
+require 'socket'
 require 'mongo'
 
 require 'monggler/logger'
