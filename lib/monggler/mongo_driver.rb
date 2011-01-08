@@ -3,7 +3,10 @@ module Monggler
     CONFIG_FILE = File.join('config', 'monggler.yml')
     SEVERITY_TO_SYMBOL = [:debug, :info, :warn, :error, :fatal, :unknown]
 
+    attr_reader :request, :previous_request
+
     def initialize
+      @previous_request = {}
       reload_config!
     end
 
@@ -20,7 +23,7 @@ module Monggler
         when :render_collection then  @request[:views] << hash
         when :render_template then    @request[:views] << hash
         when :start_processing then   @request.merge!(hash)
-        when :redirect_to then        @request.merge!(hash)
+        when :redirect then           @request.merge!(hash)
         when :process_action then     @request.merge!(hash)
         when :custom then             @request[:custom] << hash[:custom]
       end
@@ -72,6 +75,7 @@ module Monggler
 
       def finalize_request
         @collection << @request
+        @previous_request = @request
         prepare_request
       end
 
