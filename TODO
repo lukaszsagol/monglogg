@@ -1,0 +1,3 @@
+TODO:
+* action_mailer & active_resource log subscribers
+* missing methods in action_controller log subscriber
