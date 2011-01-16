@@ -15,6 +15,10 @@ class TestItemsController < ActionController::TestCase
       # TODO: how to check rendering temlpates?
     end
 
+    should "properly log additional data" do
+      assert !@request[:custom].empty? 
+    end
+
     should "properly log rendering partials" do
       view = @request[:views].select { |v| v[:view] == 'items/_new_item.html.erb' }.first
       assert view

@@ -1,7 +1,7 @@
 TODO:
+* write tests that would actually matter
 * action_mailer & active_resource log subscribers
 * missing methods in action_controller log subscriber
-* test loading config file
-* test rendering template (!?!)
+* test rendering template
 * create cache in case of mongo disconnect
 * handle mongo disconnects

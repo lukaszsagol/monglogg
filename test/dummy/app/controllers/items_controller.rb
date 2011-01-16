@@ -4,6 +4,8 @@ class ItemsController < ApplicationController
   def index
     @items = Item.all
 
+    Monglogg.logger.add_data(:items => @items)
+
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @items }
