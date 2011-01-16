@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{monglogg}
-  s.version = "0.0.0"
+  s.version = "0.1.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Łukasz Sągol"]
-  s.date = %q{2011-01-08}
+  s.date = %q{2011-01-16}
   s.description = %q{TODO: longer description of your gem}
   s.email = %q{lukasz@sagol.pl}
   s.extra_rdoc_files = [
@@ -25,13 +25,14 @@ Gem::Specification.new do |s|
     "Rakefile",
     "TODO",
     "VERSION",
-    "lib/monggler.rb",
-    "lib/monggler/helper.rb",
-    "lib/monggler/log_subscribers/action_controller_subscriber.rb",
-    "lib/monggler/log_subscribers/action_view_subscriber.rb",
-    "lib/monggler/log_subscribers/active_record_subscriber.rb",
-    "lib/monggler/logger.rb",
-    "lib/monggler/mongo_driver.rb",
+    "lib/monglogg.rb",
+    "lib/monglogg/helper.rb",
+    "lib/monglogg/log_subscribers/action_controller_subscriber.rb",
+    "lib/monglogg/log_subscribers/action_view_subscriber.rb",
+    "lib/monglogg/log_subscribers/active_record_subscriber.rb",
+    "lib/monglogg/logger.rb",
+    "lib/monglogg/mongo_driver.rb",
+    "monglogg.gemspec",
     "test/dummy/Rakefile",
     "test/dummy/app/controllers/application_controller.rb",
     "test/dummy/app/controllers/items_controller.rb",
@@ -78,10 +79,11 @@ Gem::Specification.new do |s|
     "test/dummy/public/stylesheets/scaffold.css",
     "test/dummy/script/rails",
     "test/helper.rb",
+    "test/monglogg.yml.template",
     "test/test_active_record_subscriber.rb",
     "test/test_items_controller.rb",
     "test/test_logger.rb",
-    "test/test_monggler.rb",
+    "test/test_monglogg.rb",
     "test/test_mongo_driver.rb"
   ]
   s.homepage = %q{http://github.com/zgryw/monglogg}
@@ -113,7 +115,7 @@ Gem::Specification.new do |s|
     "test/test_active_record_subscriber.rb",
     "test/test_items_controller.rb",
     "test/test_logger.rb",
-    "test/test_monggler.rb",
+    "test/test_monglogg.rb",
     "test/test_mongo_driver.rb"
   ]
 
