@@ -1,0 +1,5 @@
+test:
+  host: localhost
+  port: 27017
+  db: monglogg
+  collection: dummy_monglogg_file_test

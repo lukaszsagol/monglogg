@@ -57,21 +57,22 @@ module Monglogg
       @collection
     end
 
-    private
-      def config
-        return @config if defined?(@config) and @config
-        @config = {
-          :host => 'localhost',
-          :port => 27017,
-          :collection => "#{Monglogg::Helper.current_app_name}_#{Rails.env}_log",
-          :db => 'monglogg'
-        }
-        if File.exists? Rails.root.join(CONFIG_FILE)
-          config_file = YAML.load(File.read(Rails.root.join(CONFIG_FILE)))
-          @config.merge! config_file[Rails.env] if config_file[Rails.env]
-          @config[:auth] = true if @config[:username] && @config[:password]
-        end
+    def config
+      return @config if defined?(@config) and @config
+      @config = {
+        :host => 'localhost',
+        :port => 27017,
+        :collection => "#{Monglogg::Helper.current_app_name}_#{Rails.env}_log",
+        :db => 'monglogg'
+      }
+      if File.exists? Rails.root.join(CONFIG_FILE)
+        config_file = YAML.load(File.read(Rails.root.join(CONFIG_FILE)))
+        @config.merge! config_file[Rails.env].symbolize_keys if config_file[Rails.env]
+        @config[:auth] = true if @config[:username] && @config[:password]
       end
+    end
+
+    private
 
       def finalize_request
         @collection << @request

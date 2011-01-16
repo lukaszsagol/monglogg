@@ -5,13 +5,14 @@ class TestMongoDriver < Test::Unit::TestCase
     setup do
       @logger = Monglogg.logger
       @mongo = @logger.mongo
+      @mongo.reload_config!
     end
 
     context "configuration" do
       should "use default values, if config file not provided" do
         without_file(Monglogg::MongoDriver::CONFIG_FILE) do
           @mongo.reload_config!
-          config = @mongo.send(:config)
+          config = @mongo.config
 
           assert_equal "localhost", config[:host]
           assert_equal 27017,       config[:port]
@@ -19,17 +20,20 @@ class TestMongoDriver < Test::Unit::TestCase
       end
 
       should "use correct collection name" do
-        assert_equal "#{Monglogg::Helper.current_app_name}_#{Rails.env}_log", @mongo.send(:config)[:collection]
+        assert_equal "#{Monglogg::Helper.current_app_name}_#{Rails.env}_log", @mongo.config[:collection]
       end
 
       should "create collection if needed" do
-        collection_name = @logger.mongo.send(:config)[:collection]
+        collection_name = @mongo.config[:collection]
         @mongo.connection.drop_collection(collection_name)
         assert @mongo.collection
       end
 
       should "load be loaded from file if present" do
-        # TODO: test loading config file
+        with_file 'monglogg.yml.template', Monglogg::MongoDriver::CONFIG_FILE do
+          @mongo.reload_config!
+          assert_equal 'dummy_monglogg_file_test', @mongo.config[:collection]
+        end
       end
     end
 

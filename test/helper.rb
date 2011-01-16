@@ -21,10 +21,23 @@ require 'fileutils'
 class Test::Unit::TestCase
   def without_file(filename, &block)
     FileUtils.mv filename, filename+'.tmp' if File.exists? filename
-    yield
-    FileUtils.mv filename+'.tmp', filename if File.exists? filename+'.tmp'
+    begin
+      yield
+    ensure
+      FileUtils.mv filename+'.tmp', filename if File.exists? filename+'.tmp'
+    end
   end
 
-  Monglogg.logger.mongo.connection.drop_collection(Monglogg.logger.mongo.send(:config)[:collection])
+  def with_file(source_filename, dest_filename, &block)
+    FileUtils.install File.join(File.dirname(__FILE__), source_filename), File.join(File.dirname(__FILE__), 'dummy', dest_filename)
+    begin
+      yield
+    ensure
+      FileUtils.rm_rf(File.join(File.dirname(__FILE__), 'dummy', dest_filename))
+    end
+  end
+
+  # cleanup!
+  Monglogg.logger.mongo.connection.drop_collection(Monglogg.logger.mongo.config[:collection])
 end
 
